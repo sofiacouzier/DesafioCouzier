@@ -71,7 +71,7 @@ const elegido = document.getElementById(`elegido`)
 
 mostrar.addEventListener(`click`, () => {
     let temaStorage = JSON.parse(localStorage.getItem(`eleccion`))
-    elegudo.innerHTML += "" 
+    elegido.innerHTML += "" 
     temaStorage.forEach((opcionElegida, i) => {
         elegido.innerHTML += `
         <div class="card border-dark mb-3" id="tema${i}" style="max-width: 20rem; margin:4px;">
@@ -126,7 +126,7 @@ form.addEventListener(`submit`, (e) => {
 
 botonJugadores.addEventListener(`click`, () => {
     let arrayStorage = JSON.parse(localStorage.getItem(`Jugadores`))
-    divJugadores.innerHTML += "" 
+    divJugadores.innerHTML = "" 
     arrayStorage.forEach((Jugador, indice) => {
         
         divJugadores.innerHTML += `
