@@ -1,3 +1,4 @@
+
 class Tema {
     constructor (id, nombre, dificultad, preguntas)
     {
@@ -35,6 +36,7 @@ opciones.forEach(Tema => {
   
 
 const eleccion = document.getElementById('botonTemas')
+// const muestra = document.getElementById('mostrarTema')
 eleccion.addEventListener('click', (event) => {
     event.preventDefault()
     let eleccion
@@ -56,11 +58,38 @@ eleccion.addEventListener('click', (event) => {
         }else{
             console.log(opcionElegida)
         }
+
+        localStorage.setItem(`eleccion`, JSON.stringify(opcionElegida))
  }
 }     )
-     
-   
-   
+
+
+//MOSTRAR TEMA
+
+const mostrar = document.getElementById(`mostrarTema`)
+const elegido = document.getElementById(`elegido`)
+
+mostrar.addEventListener(`click`, () => {
+    let temaStorage = JSON.parse(localStorage.getItem(`eleccion`))
+    elegudo.innerHTML += "" 
+    temaStorage.forEach((opcionElegida, i) => {
+        elegido.innerHTML += `
+        <div class="card border-dark mb-3" id="tema${i}" style="max-width: 20rem; margin:4px;">
+            <div class="card-header text-dark"><h2>${opcionElegida.nombre}</h2></div>
+            <div class="card-body text-muted">
+                <p class="card-title">dificultad: ${opcionElegida.dificultad}</p>
+                <p class="card-title">pregunta: ${opcionElegida.preguntas}</p>
+            </div>
+        </div>
+        
+        `});
+})
+
+
+
+
+
+
 
 
 
@@ -81,30 +110,74 @@ const botonJugadores = document.getElementById(`botonJugadores`)
 const divJugadores = document.getElementById(`divJugadores`)
 
 
-form.addEventListener(`submit`, (event) => {
-    event.preventDefault()
+form.addEventListener(`submit`, (e) => {
+    e.preventDefault()
+   
     let nombre = document.getElementById(`idNombre`).value
     let email = document.getElementById(`idMail`).value
     let contraseña = document.getElementById(`idContraseña`).value
 
     const jugador = new Jugador (nombre, email, contraseña)
     Jugadores.push(jugador)
-    console.log(Jugadores)
+
+    localStorage.setItem(`Jugadores`, JSON.stringify(Jugadores))
     form.reset()
 })
 
 botonJugadores.addEventListener(`click`, () => {
-    Jugadores.forEach(jugador => {
-        divJugadores.innerHTML +=
-        `
-        <div class="card" style="width: 18rem; margin: 5px;">
-  
-            <div class="card-body">
-            <h5 class="card-title">${jugador.nombre}</h5>
-            <p class="card-text">${jugador.email}</p>
-    
+    let arrayStorage = JSON.parse(localStorage.getItem(`Jugadores`))
+    divJugadores.innerHTML += "" 
+    arrayStorage.forEach((Jugador, indice) => {
+        
+        divJugadores.innerHTML += `
+        <div class="card border-dark mb-3" id="nombre${indice}" style="max-width: 20rem; margin:4px;">
+            <div class="card-header text-dark"><h2>${Jugador.nombre}</h2></div>
+            <div class="card-body text-muted">
+                <p class="card-title">Talle: ${Jugador.email}</p>
+                <button class="btn btn-danger">Eliminar jugador</button>
             </div>
-</div>
+        </div>
+        
         `
-    })
+    });
+
+
+    arrayStorage.forEach((Jugador, indice) => {
+        let botonCard = document.getElementById(`nombre${indice}`).lastElementChild.lastElementChild
+        botonCard.addEventListener(`click`, () => {
+          document.getElementById(`nombre${indice}`).remove() 
+          Jugadores.splice(indice, 1)
+          localStorage.setItem(`Jugadores`, JSON.stringify(Jugadores)) 
+          console.log(`${Jugador.nombre} Eliminada`)
+        })
+    
+     }) 
+})
+
+
+
+
+const botonDarkMode = document.getElementById("botonDarkMode")
+const botonLightMode = document.getElementById("botonLightMode")
+ 
+let darkMode
+
+if(localStorage.getItem('theme')){
+    darkMode = localStorage.getItem("theme")
+}else{
+    localStorage.setItem('theme',"light")
+}
+
+if (darkMode == "dark"){
+    document.body.classList.add('darkMode')
+}
+
+botonDarkMode.addEventListener('click', () => {
+    document.body.classList.add("darkMode") 
+    localStorage.setItem('theme',"dark")
+})
+botonLightMode.addEventListener("click", () => {
+    document.body.classList.remove("darkMode") 
+    localStorage.setItem('theme',"light")
+   
 })

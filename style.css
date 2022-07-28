@@ -1,8 +1,27 @@
 .temas{
-    background-color: black;
+    background-color:rgb(29, 29, 29);
     color: whitesmoke;
     margin: 10px;
     margin-left: 30px;
     margin-top: 40px;
     font-size: 14px;
 }
+.btn{
+    border-color:dimgrey;
+    margin: 10px;
+    width: 200px;
+    justify-content: right;
+}
+.theme{
+    background-color:rgb(29, 29, 29);
+    justify-content: right;
+}
+body {
+    color: rgb(34, 34, 37);
+    transition: ease 1s;
+}
+
+.darkMode{
+    background-color: black;
+    color: whitesmoke;
+} 
