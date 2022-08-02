@@ -42,6 +42,7 @@ eleccion.addEventListener('click', (event) => {
     let eleccion
     do{
         eleccion = prompt('Elija un tema (matematica, historia, arte, deporte, o lengua').toLowerCase()
+
         if( eleccion === "matematica" || eleccion === "historia" || eleccion === "arte" || eleccion === "deporte" || eleccion === "lengua"){
             buscarTema(opciones)
             break
@@ -64,14 +65,13 @@ eleccion.addEventListener('click', (event) => {
 }     )
 
 
-//MOSTRAR TEMA
 
 const mostrar = document.getElementById(`mostrarTema`)
 const elegido = document.getElementById(`elegido`)
-
+ let temaStorage = JSON.parse(localStorage.getItem(`eleccion`))
 mostrar.addEventListener(`click`, () => {
-    let temaStorage = JSON.parse(localStorage.getItem(`eleccion`))
-    elegido.innerHTML += "" 
+   
+    elegido.innerHTML = "" 
     temaStorage.forEach((opcionElegida, i) => {
         elegido.innerHTML += `
         <div class="card border-dark mb-3" id="tema${i}" style="max-width: 20rem; margin:4px;">
@@ -161,12 +161,7 @@ const botonDarkMode = document.getElementById("botonDarkMode")
 const botonLightMode = document.getElementById("botonLightMode")
  
 let darkMode
-
-if(localStorage.getItem('theme')){
-    darkMode = localStorage.getItem("theme")
-}else{
-    localStorage.setItem('theme',"light")
-}
+(localStorage.getItem('theme')) ? darkMode == localStorage.getItem("theme") : localStorage.setItem('theme',"light")
 
 if (darkMode == "dark"){
     document.body.classList.add('darkMode')
