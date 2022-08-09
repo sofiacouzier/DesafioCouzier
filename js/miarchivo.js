@@ -23,16 +23,83 @@ const divTemas = document.getElementById("temas")
 
 opciones.forEach(Tema => {
     divTemas.innerHTML += `
-    <div class="card temas" id="opcion${Tema.id}" style="width: 14rem;">
+    <div class="card temas" id="opcion${Tema.id}" style="width: 16rem;">
     <div class="card-body">
         <h5 class="card-title">${Tema.nombre}</h5>
         <p class="card-text">dificultad: ${Tema.dificultad}</p>
         <p class="card-text">cant. de preguntas: ${Tema.preguntas}</p>
+        <button class="btn btn-primary me-5 mt-0">jugar</button>
 </div>
 </div>
     `
 })
+opciones.forEach((Tema, indice) =>{
+    document.getElementById(`opcion${Tema.id}`).lastElementChild.lastElementChild.addEventListener(`click`, () =>{
+        Swal.fire({
+            title:`elegiste el tema ${Tema.nombre}`,
+            text: "queres continuar?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'si!'
+          
+        }).then((result) => {
 
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: 'cuanto es 4x6?',
+                showDenyButton: true,
+                confirmButtonText: '24',
+                denyButtonText: `20`,
+              }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'correcto',
+                        icon: 'success',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'continuar!'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                       Swal.fire({
+                       title: 'cuanto es 135/5?',
+                        showDenyButton: true,
+                       confirmButtonText: '27',
+                       denyButtonText: `32`,
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      Swal.fire(
+                        'Ganaste!',
+                        'felicitaciones',
+                        'success',
+                      )
+                   
+                    } else if (result.isDenied) {
+                      Swal.fire('incorrecto', '', 'error')
+                    }
+                  })
+                        }
+                      })
+                
+                
+                
+                } else if (result.isDenied) {
+                    Swal.fire('incorrecto', '', 'error')
+                  }
+              })
+
+            } 
+          })
+
+          })
+
+    })
+
+   
   
 
 const eleccion = document.getElementById('botonTemas')

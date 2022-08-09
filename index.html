@@ -9,14 +9,31 @@
      <link rel="stylesheet" href="style.css">
  </head>
  <body class="light">
-   <div class="row theme">
-     <button id="botonLightMode" class="btn btn-light ">Light Mode</button>
-     <button id="botonDarkMode" class="btn btn-dark ">Dark Mode</button>
-     
-  </div>
-
-     <div id="temas" class="row "></div>
-     <div id="elegido"></div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li>
+         <button class="m-1 btn-light" id="botonLightMode"> Light Mode</button>
+          </li>
+          <button id="botonDarkMode" class="m-1 btn-dark ">Dark Mode</button>
+          <li>
+             </li>
+          </ul>
+</nav>
+<div id="temas" class="row "></div>
 <br>
 <br>
 <br>
@@ -25,6 +42,7 @@
     <button id="mostrarTema" class="btn btn-dark">Mostrar Tema</button>
     <br><br>
 </div>
+
 <br>
 <br>
 <br>
@@ -60,6 +78,7 @@
         <br>
    
 </div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <script src="js/miarchivo.js"></script>
  </body>
  </html> 

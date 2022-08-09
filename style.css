@@ -4,7 +4,7 @@
     margin: 10px;
     margin-left: 30px;
     margin-top: 40px;
-    font-size: 14px;
+    font-size: 11px;
 }
 .btn{
     border-color:dimgrey;
@@ -25,3 +25,14 @@ body {
     background-color: black;
     color: whitesmoke;
 } 
+.btn-light{
+    border-radius: 10px;
+    background-color: whitesmoke;
+    border-style: none;
+}
+.btn-dark{
+    border-radius: 10px;
+    background-color: rgb(74, 69, 69);
+    color: whitesmoke;
+    border-style: none;
+}
